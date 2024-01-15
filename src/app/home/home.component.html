@@ -1,0 +1,11 @@
+<p>{{title}} Angular</p>
+<ng-container *ngIf="(criteria$ | async) as selected">
+    <p *ngIf="newName">{{selected}}</p>
+    <app-testbutton [filterName]="selected"></app-testbutton>
+</ng-container>
+
+<label for="newName">Search: </label>
+<div class="col-md-6 my-3">
+    <input type="text" [(ngModel)]="newName" id="newName" (change)="onCitySearch()" placeholder="...Filter" />
+</div>
+<p *ngIf="newName">{{newName}}</p>

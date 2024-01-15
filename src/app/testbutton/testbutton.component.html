@@ -1,0 +1,20 @@
+<div class="col-md-8" [ngStyle]="{'border': '1px solid orange'}">
+    <p>hola mundo {{ 5*5 }} {{ title }}</p>
+    <ul [ngClass]="'alert'">
+        <app-cities *ngFor="let city of cities | filterCities:filterName" (clickedCityEnvent)="onCityClicked($event)"
+            [city]="city" [selection]="selection"></app-cities>
+    </ul>
+
+    <div class="col-md-4">
+
+        <div *ngIf="selection">
+            <p>clicked city: {{selection}}</p>
+            <app-clear (click)="onClear()" [colors]="'blue'" [labels]="'Clear form'"
+                [selection]="selection"></app-clear>
+        </div>
+
+    </div>
+    <div class="col-md-6 my-3">
+        <app-new-item [label]="'City'" [className]="'btn-info'" (newItemEvent)="addNewCity($event)"></app-new-item>
+    </div>
+</div>

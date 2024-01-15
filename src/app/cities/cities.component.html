@@ -1,0 +1,3 @@
+<li [ngStyle]="{'color':'orange','background-color':city==='Madrid'?'green':'pink'}">{{city | titlecase }}</li>
+<li [ngClass]="{'selected':city==='Barcelona', 'unSelected':city!=='Barcelona'}">{{city}}</li>
+<li (click)="onCityClicked(city)" [ngClass]="{'clickable':city, 'selected':city===selection}">{{city}}</li>
