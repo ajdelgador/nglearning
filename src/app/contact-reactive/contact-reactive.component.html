@@ -1,4 +1,4 @@
-<h1>Contact Reactive form {{name}}</h1>
+<h1>Contact Reactive form {{name}}{{(selectedCity$ | async)?.nombre}}</h1>
 <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
     <div class="mb-4">
         <label for="name" class="form-label">Name</label>

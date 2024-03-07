@@ -1,3 +1,13 @@
-<li [ngStyle]="{'color':'orange','background-color':city==='Madrid'?'green':'pink'}">{{city | titlecase }}</li>
-<li [ngClass]="{'selected':city==='Barcelona', 'unSelected':city!=='Barcelona'}">{{city}}</li>
-<li (click)="onCityClicked(city)" [ngClass]="{'clickable':city, 'selected':city===selection}">{{city}}</li>
+<ul [ngClass]="'alert'">
+    <li class="mt-1" (click)="onRowCityClicked(city)"
+        [ngClass]="{'clickable list-group-item':city, 'selected active':city?._id===selection?._id}">
+        {{city?.nombre | titlecase }}
+
+        <button *ngIf="city?._id===selection?._id" type="button" class="btn btn-danger float-right"
+            (click)="onRowCityDeleted(city)">Delete</button>
+    </li>
+
+    <!--  <li [ngStyle]="{'color':'orange','background-color':city==='Madrid'?'green':'pink'}">{{city | titlecase }}</li>
+    <li [ngClass]="{'selected':city==='Barcelona', 'unSelected':city!=='Barcelona'}">{{city}}</li>
+    <li (click)="onRowCityClicked(city)" [ngClass]="{'clickable':city, 'selected':city===selection}">{{city}}</li>-->
+</ul>

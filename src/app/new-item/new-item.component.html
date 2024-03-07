@@ -4,10 +4,14 @@
             <label for="newItem" class="col-form-label">New {{label}}</label>
         </div>
         <div class="col-auto">
-            <input type="text" id="newItem" class="form-control" #newItem>
+            <input type="text" id="newItem" name="newItem" class="form-control" [ngModel]='selection?.nombre'
+                #newItem /> <!--  [ngModel]='selection' added to updates thru API -->
         </div>
         <div class="col-auto">
-            <button class="btn" [ngClass]="[className]" (click)="onAddNewItem(newItem.value)">Add {{label}}</button>
+            <button *ngIf="selection" class="btn" [ngClass]="[className]"
+                (click)="onUpdateItem(selection); newItem.value='';">Update {{label}}</button>
+            <button *ngIf="!selection" class="btn" [ngClass]="[className]"
+                (click)="onAddNewItem(newItem.value); newItem.value='';">Add {{label}}</button>
         </div>
     </div>
 </form>

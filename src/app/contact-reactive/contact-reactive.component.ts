@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ContactComponent } from '../contact/contact.component';
 import { ActivatedRoute, Params } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-contact-reactive',
@@ -12,15 +13,19 @@ export class ContactReactiveComponent implements OnInit {
   contactForm!: FormGroup;
   myField = new FormControl();
   name!: string;//comes from querystring
-
+  departments: string[] = [];
+  selectedCity$ = this.dataSvc.selectedCity$;
+  
   onSubmit(): void {
     console.log('Form Values', this.contactForm.value)
   }
-
-  constructor(private readonly fb: FormBuilder,
-    private readonly route: ActivatedRoute) { }
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly route: ActivatedRoute,
+    private readonly dataSvc: DataService) { }
 
   ngOnInit(): void {
+    this.route.snapshot.data['departments']; //resolver
     this.contactForm = this.initForm();
     this.onPatchValue();
     //this.onSetValue();

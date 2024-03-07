@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -14,7 +14,10 @@ interface ContactForm {
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
+
 export class ContactComponent implements OnInit {
+  @ViewChild('contactForm') contactForm!: NgForm;
+
   id!: string;//comes from url
   model = {
     name: "",
@@ -22,15 +25,16 @@ export class ContactComponent implements OnInit {
     department: "",
     comment: ""
   }
+
   constructor(private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.id = params['id']
+      this.id = params['id']//valor viene por parametro de ruta
     })
   }
   //onSubmit(values: any)
-  onSubmit(form: NgForm) {
-    console.log('Form Values', form)
+  onSubmit() {
+    console.log('Form Values', this.contactForm)
   }
 }
